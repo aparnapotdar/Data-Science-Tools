@@ -56,7 +56,7 @@ outfile.write('Paragraph Analysis'+'\n')
 outfile.write('--------------------------------'+'\n')
 outfile.write('Approximate Word count: ' + str(len(words))+ '\n')
 outfile.write('Approximate Sentence count: ' + str(len(sentences))+ '\n')
-outfile.write('Approximate letter count (per word): ' + str(round(avgWordLength,2))+ '\n')
+outfile.write('Average letter count (per word): ' + str(round(avgWordLength,2))+ '\n')
 outfile.write('Average sentence length (in words): ' + str(round(avgSentenceLength,2)) + '\n')
 
 outfile.close()
