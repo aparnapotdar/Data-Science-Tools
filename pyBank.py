@@ -1,4 +1,8 @@
-
+# This program analyzes company's revenue data for months (Month, revenue)
+# Provides total months , average revenue change, max revenue increase and decrease
+# input - prompt for directory and data file name
+# output - creates file with revenue analysis with file name prefix "analysis"
+  
 #prompt for directory name and data file name
 directoryName=input(print("What's the directory name where data file resides? "))
 dataFileName=input(print("What's the data file name? "))

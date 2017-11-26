@@ -1,4 +1,8 @@
 
+# This program analyzes election result data (voterId, County , Candidate)
+# input on prompt - directory and data file name 
+# output - file with election results by candidates and winner. Filename prefix "analysis"
+
 #prompt for directory name and data file name
 directoryName=input(print("What's the directory name where data file resides? "))
 dataFileName=input(print("What's the data file name? "))
