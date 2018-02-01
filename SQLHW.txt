@@ -1,60 +1,69 @@
 USE sakila;
-
+#1a
 SELECT first_name, last_name FROM actor;
 
+#1b
 SELECT CONCAT(upper(first_name), " ",upper(last_name) ) as "Actor Name" FROM actor;
 
+#2a
 SELECT actor_id, first_name, last_name 
 FROM actor
 WHERE upper(first_name) like '%JOE%';
 
-
+#2b
 SELECT actor_id, first_name, last_name 
 FROM actor
 WHERE upper(last_name) like '%GEN%';
 
+#2c
 SELECT actor_id, first_name, last_name 
 FROM actor
 WHERE upper(last_name) like '%LI%'
 ORDER BY last_name, First_name;
 
+#2d
 SELECT country_id, Country FROM country
 WHERE country IN ("afghanistan", "bangladesh", "china");
 
+#3a
 ALTER TABLE actor
 ADD COLUMN middle_name varchar(45) 
 AFTER first_name;
 
+#3b
 ALTER TABLE actor
 MODIFY COLUMN middle_name blob;
 
+#3c
 ALTER TABLE actor
 DROP COLUMN middle_name;
 
+#4a
 SELECT last_name, COUNT(*) FROM actor
 GROUP BY last_name
 ORDER BY last_name;
 
+#4b
 SELECT last_name, COUNT(*) FROM actor
 GROUP BY last_name
 HAVING COUNT(*) > 1
 ORDER BY last_name;
 
-select * from actor where upper(last_name) =  "WILLIAMS" ;
-
+#4c
 UPDATE actor
 SET first_name = "HARPO"
 WHERE upper(first_name) = "GROUCHO"
 AND upper(last_name) =  "WILLIAMS"
 LIMIT 1;
 
+#4d
 UPDATE actor
 SET first_name = "GROUCHO"
 WHERE upper(first_name) = "HARPO"
 AND upper(last_name) =  "WILLIAMS"
 LIMIT 1;
 
-
+#5a
 CREATE TABLE `address` (
   `address_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `address` varchar(50) NOT NULL,
@@ -72,36 +81,38 @@ CREATE TABLE `address` (
 ) ENGINE=InnoDB AUTO_INCREMENT=606 DEFAULT CHARSET=utf8;
 
 
-
+#6a
 SELECT s.first_name, s.last_name, CONCAT(a.address, ", ", a.district,", ", a.postal_code) AS address
 FROM staff AS s INNER JOIN address AS a ON s.address_id = a.address_id;
 
+#6b
 SELECT s.first_name, s.last_name, SUM(amount) AS "Total Amount Aug 2005"
 FROM staff AS s INNER JOIN payment AS p ON s.staff_id = p.staff_id
 AND payment_date like "2005-08%"
 GROUP BY s.first_name, s.last_name;
 
-
+#6c
 SELECT f.title, COUNT(fa.actor_id) as "Number of Actors"
 FROM film AS f INNER JOIN film_actor AS fa ON f.film_id = fa.film_id
 GROUP BY f.title
 
+#6d
 SELECT count(*) FROM film
 WHERE lower(title)  like "%hunchback%impossible%";
 
-SELECT * from payment
-select * from customer
-
+#6e
 SELECT c.first_name ,c.last_name , SUM(p.amount) as "Total Amount Paid"
 FROM customer AS c INNER JOIN payment AS p ON c.customer_id = p.customer_id
 GROUP BY c.first_name ,c.last_name
 ORDER BY c.last_name;
 
+#7a
 SELECT title 
 FROM film AS f INNER JOIN language as l ON f.language_id = l.language_id 
 and (upper(f.title) like "Q%" OR upper(f.title) like "K%") 
 and  l.name="English";
 
+#7b
 SELECT first_name, last_name from actor
 WHERE actor_id IN 
 (
@@ -114,7 +125,7 @@ WHERE lower(title) like "%alone%trip%"
  )
  ORDER BY last_name;
  
- 
+#7c 
 SELECT first_name, last_name, email
 FROM customer 
 WHERE address_id in
@@ -134,7 +145,7 @@ WHERE lower(country) = "canada"
 )
 );
 
-Resume at 7D
+To be completed for 7D onwards, expect to complete by Feb 4....
 
  
  
