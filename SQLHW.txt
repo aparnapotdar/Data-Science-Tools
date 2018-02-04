@@ -145,7 +145,72 @@ WHERE lower(country) = "canada"
 )
 );
 
-To be completed for 7D onwards, expect to complete by Feb 4....
+#7D
+SELECT* 
+FROM film
+WHERE film_id IN
+(
+SELECT film_id 
+FROM film_category
+WHERE category_id IN
+(
+SELECT category_id 
+FROM category
+where lower(name) LIKE "%family%"
+)
+);
+
+
+#7E
+select f.title, count(r.rental_id) as times_rented
+FROM rental AS r INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id
+INNER JOIN film as f ON f.film_id = i.inventory_id
+GROUP BY f.title
+ORDER BY 2 DESC;
+
+#7F
+SELECT s.store_id, a.address, sum(p.amount) as "Total Business in $"
+FROM store AS s INNER JOIN staff s2 ON s.store_id = s2.store_id
+INNER JOIN address as a ON s.address_id = a.address_id
+INNER JOIN payment AS p ON s2.staff_id = p.staff_id
+GROUP BY s.store_id
+order by 3 DESC;
+
+#7G
+SELECT s.store_id,  c1.city, c2.country
+FROM store AS s INNER JOIN address AS  a ON s.address_id = a.address_id
+INNER JOIN city as c1 ON c1.city_id = a.city_id
+INNER JOIN country AS c2 ON c1.country_id = c2.country_id;
+
+#7H
+SELECT c.name, sum(p.amount) as "Gross Revenue"
+FROM category AS C INNER JOIN film_category f ON c.category_id = f.category_id
+INNER JOIN inventory as i ON i.film_id = f.film_id
+INNER JOIN rental AS r ON r.inventory_id = i.inventory_id
+INNER JOIN payment AS p ON p.rental_id = r.rental_id
+GROUP BY c.name
+ORDER by 2 DESC;
+
+#8A
+CREATE VIEW top_five_genres
+AS
+SELECT c.name, sum(p.amount) as Gross_Revenue
+FROM category AS C INNER JOIN film_category f ON c.category_id = f.category_id
+INNER JOIN inventory as i ON i.film_id = f.film_id
+INNER JOIN rental AS r ON r.inventory_id = i.inventory_id
+INNER JOIN payment AS p ON p.rental_id = r.rental_id
+GROUP BY c.name
+ORDER by 2 DESC
+LIMIT 5;
+
+#8B
+select * from top_five_genres;
+
+
+#8C
+DROP VIEW top_five_genres;
+
+
 
  
  
